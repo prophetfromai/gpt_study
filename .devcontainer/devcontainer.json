@@ -1,0 +1,16 @@
+{
+    "name": "GPT Study database",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.black-formatter"
+            ]
+        }
+    },
+    "features": {"ghcr.io/dhoeric/features/google-cloud-cli": {}
+    },
+    "postCreateCommand": "pip install --upgrade pip && python3 -m venv venv && ./venv/bin/pip install -r requirements.txt"
+}
