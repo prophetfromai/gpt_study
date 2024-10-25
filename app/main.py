@@ -1,18 +1,17 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse, PlainTextResponse
-from app.routes.gpt import router
-from app.conf.config import custom_openapi
+from app.routes import router
+import os
 
+server_url = os.getenv('BASE_URL', 'https://localhost:8080')
 
 app = FastAPI(
     title='GPT Notes',
-    version='1.0.0'
+    version='1.0.0',
+    servers=[{'url':'serverurl','description':'Production server' if 'run.app' in server_url else 'Local server'}]
 )
 
-
 app.include_router(router)
-
-app.openapi = custom_openapi(app)
 
 @app.get('/', include_in_schema=False)
 async def redirect_to_docs():
